@@ -1,2 +1,6 @@
 This is the K-Means clustering algorithm for unsupervised learning, written in Python. 
 Copyright - Ryan Diaz, 2018 
+
+Kinda quick and dirty but it gets the job done.
+
+Usage - edit var k to change number of clusters, edit var maxiter to change the cap on iterations. 
