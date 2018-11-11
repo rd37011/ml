@@ -52,7 +52,7 @@ def adjustpoints(centroids, labeleddata):
 
 def adjustcentroids(centroids, labeleddata):
     newcentroids = []
-    sum = [0, 0, 0, 0, 0]
+    sum = np.zeros(len(labeleddata[0].point))
     count = 0
 
     for c in centroids:
@@ -96,11 +96,15 @@ def kmeans():  # driver program
         centroids, labeleddata = adjustcentroids(centroids, labeleddata)
         centroids, labeleddata = adjustpoints(centroids, labeleddata)
         export(centroids, labeleddata)
+        print(iterations)
+        for c in centroids:
+            print(c)
+
 
 
 def export(centroids, labeleddata):
     csv.register_dialect('output', delimiter=' ', lineterminator="\n")
-    with open('kmeans_data.csv', 'a', newline="\n") as f:
+    with open('kmeans_2ddata.csv', 'a', newline="\n") as f:
         writer = csv.writer(f)
         for c in centroids:
             writer.writerow(c)
@@ -116,10 +120,11 @@ def export(centroids, labeleddata):
 
 def loaddata():
     dataset = []
-    with open('training_data.csv', 'r') as f:
+    with open('2dtrain_data.csv', 'r') as f:
         csv_reader = csv.reader(f, delimiter=',')
         for row in csv_reader:
             row = list(map(float, row))
+            """
             mn = min(row)
             mx = max(row)
             for i in range(len(row)):
@@ -127,6 +132,7 @@ def loaddata():
                     row[i] = 0.0
                 else:
                     row[i] = (row[i] - mn)/(mx - mn)
+            """
             dataset.append(row)
         return dataset
 
